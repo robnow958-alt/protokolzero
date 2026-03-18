@@ -4,56 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PROTOKÓŁ ZERO — Rob Veld</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/svg+xml" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#060608;color:#c8c8d4;font-family:'Courier New',monospace;line-height:1.6}
-nav{position:fixed;top:0;left:0;right:0;padding:16px 40px;border-bottom:1px solid #1e1e24;background:rgba(6,6,8,0.92);display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:2px;z-index:100}
-.nav-brand{display:flex;align-items:center;gap:12px}
-.nav-logo{width:32px;height:32px}
+
+/* NAVIGATION */
+nav{position:fixed;top:0;left:0;right:0;padding:16px 40px;border-bottom:1px solid #1e1e24;background:rgba(6,6,8,0.92);display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:2px;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#c8c8d4}
+.nav-logo img{width:32px;height:32px;animation:logo-glow 3s infinite}
 .nav-logo span{color:#e03030}
-.status-dot{width:6px;height:6px;background:#e03030;border-radius:50%;display:inline-block;animation:pulse 2s infinite;margin-right:8px}
+.nav-links{display:flex;gap:24px}
+.nav-links a{color:#6b6b78;text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:#e03030}
+
+/* STATUS DOT */
+.status-dot{width:6px;height:6px;background:#e03030;border-radius:50%;display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.2}}
-.hero{min-height:100vh;padding:150px 40px 80px;position:relative;border-bottom:1px solid #1e1e24;display:flex;align-items:center}
-.hero-content{max-width:600px}
-.hero-logo{text-align:center;margin-bottom:40px}
-.hero-logo img{width:100px;height:100px;animation:pulse-glow 3s infinite}
-@keyframes pulse-glow{0%,100%{filter:drop-shadow(0 0 10px rgba(230,0,0,0.5))}50%{filter:drop-shadow(0 0 25px rgba(230,0,0,0.9))}}
-.hero-meta{display:flex;gap:24px;margin-bottom:32px;font-size:11px;letter-spacing:2px;justify-content:center}
-.tag{padding:4px 10px;border:1px solid #1e1e24;color:#6b6b78}
-.tag-red{border-color:#7a1a1a;color:#e03030}
-.hero-title{font-size:clamp(72px,14vw,180px);line-height:0.88;letter-spacing:-2px;margin-bottom:8px;text-transform:uppercase;text-align:center}
+
+/* HERO */
+.hero{min-height:100vh;padding:120px 40px 80px;position:relative;border-bottom:1px solid #1e1e24}
+.hero-meta{display:flex;gap:24px;margin-bottom:32px;font-size:11px;letter-spacing:2px;flex-wrap:wrap}
+.tag{padding:4px 10px;border:1px solid #1e1e24;color:#6b6b78;text-decoration:none;transition:all 0.2s}
+.tag:hover,.tag-red{border-color:#7a1a1a;color:#e03030}
+.hero-title{font-size:clamp(72px,14vw,180px);line-height:0.88;letter-spacing:-2px;margin-bottom:8px;text-transform:uppercase}
 .hero-title .zero{color:#e03030;display:block}
-.hero-subtitle{font-size:13px;color:#3a3a44;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;text-align:center}
-.hero-desc{max-width:480px;color:#6b6b78;font-size:15px;line-height:1.8;border-left:2px solid #e03030;padding-left:20px;margin:32px auto}
-.btn-primary{display:inline-block;background:#e03030;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px}
+.hero-subtitle{font-size:13px;color:#3a3a44;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px}
+.hero-desc{max-width:480px;color:#6b6b78;font-size:15px;line-height:1.8;border-left:2px solid #e03030;padding-left:20px;margin-bottom:32px}
+
+/* BUTTONS */
+.btn-primary{display:inline-block;background:#e03030;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px 10px 10px 0}
 .btn-primary:hover{background:#c02828;transform:translateY(-2px)}
-.btn-secondary{display:inline-block;background:#3a3a44;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px}
+.btn-secondary{display:inline-block;background:#3a3a44;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px 0}
 .btn-secondary:hover{background:#4a4a54;transform:translateY(-2px)}
-.hero-cover{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:380px;height:540px;perspective:1200px}
+
+/* HERO COVER 3D */
+.hero-cover{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:380px;height:540px}
 .cover-glow{position:absolute;inset:-80px;background:radial-gradient(circle,rgba(230,0,0,0.4) 0%,transparent 70%);filter:blur(100px);animation:glow 3s infinite}
 @keyframes glow{0%,100%{opacity:0.6;transform:scale(0.95)}50%{opacity:1;transform:scale(1.05)}}
 .cover-img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 80px 120px rgba(0,0,0,1)) drop-shadow(0 0 80px rgba(230,0,0,0.7));transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg);animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg) translateY(0)}50%{transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg) translateY(-25px)}}
-section{padding:100px 40px;border-bottom:1px solid #1e1e24}
+
+/* SECTIONS */
+section{padding:100px 40px;border-bottom:1px solid #1e1e24;scroll-margin-top:80px}
 .container{max-width:1100px;margin:0 auto}
-.section-label{font-size:10px;color:#e03030;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}
-.section-label::before{content:'';width:24px;height:1px;background:#e03030}
+.section-label{font-size:10px;color:#e03030;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
 .section-title{font-size:clamp(40px,6vw,80px);line-height:0.95;color:#f0f0f8;letter-spacing:2px;margin-bottom:48px;text-transform:uppercase}
+
+/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#1e1e24;margin-bottom:60px}
 .stat-cell{background:#0d0d10;padding:36px 28px;text-align:center}
 .stat-value{font-size:64px;color:#f0f0f8;margin-bottom:8px}
 .stat-value span{color:#e03030;font-size:36px}
 .stat-label{font-size:11px;color:#6b6b78;letter-spacing:2px;text-transform:uppercase}
+
+/* PROBLEM */
 .problem-quote{font-size:clamp(24px,3vw,36px);line-height:1.1;color:#e8e8f0;margin-bottom:30px;text-align:center}
 .problem-quote .highlight{color:#e03030}
 .problem-body{color:#6b6b78;font-size:15px;line-height:1.9;max-width:700px;margin:0 auto}
+
+/* CHAOS */
 .chaos-sources{margin-top:60px;display:flex;flex-direction:column;gap:1px;background:#1e1e24}
 .chaos-item{background:#060608;padding:28px 32px;display:grid;grid-template-columns:40px 1fr;gap:24px}
-.chaos-num{font-size:11px;color:#e03030;padding-top:2px}
+.chaos-num{font-size:11px;color:#e03030}
 .chaos-title{font-size:15px;font-weight:500;color:#e8e8f0;margin-bottom:6px}
 .chaos-body{font-size:14px;color:#6b6b78}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#1e1e24;margin-top:16px}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#1e1e24}
 .tool-card{background:#060608;padding:44px 36px}
 .tool-num{font-size:10px;color:#e03030;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
 .tool-title{font-size:28px;color:#f0f0f8;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
@@ -61,14 +79,18 @@ section{padding:100px 40px;border-bottom:1px solid #1e1e24}
 .tool-items{display:flex;flex-direction:column;gap:10px}
 .tool-item{display:flex;align-items:baseline;gap:12px;font-size:12px;color:#6b6b78;padding:10px 14px;background:#111115;border-left:2px solid transparent}
 .tool-item .item-tag{color:#e03030;font-size:10px;min-width:20px}
+
+/* AUTHOR NOTE */
 .author-note{background:#060608;border-top:1px solid #1e1e24;border-bottom:1px solid #1e1e24;padding:60px 40px;text-align:center}
 .author-note p{font-size:14px;color:#c8c8d4;line-height:2;margin-bottom:10px}
 .author-note strong{color:#f0f0f8;font-size:16px;display:block;margin-top:20px}
+
+/* CTA / AUTHOR SECTION */
 .cta-section{background:#0d0d10;padding:100px 40px}
 .cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;max-width:1100px;margin:0 auto}
 .author-label{font-size:10px;color:#6b6b78;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
 .author-name{font-size:48px;color:#f0f0f8;letter-spacing:2px;margin-bottom:20px;text-transform:uppercase}
-.author-text{font-size:14px;color:#6b6b78;line-height:1.9;max-width:400px}
+.author-text{font-size:14px;color:#6b6b78;line-height:1.9}
 .cta-box{border:1px solid #1e1e24;padding:48px;position:relative}
 .cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e03030,#7a1a1a,transparent)}
 .cta-label{font-size:10px;color:#e03030;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
@@ -76,46 +98,81 @@ section{padding:100px 40px;border-bottom:1px solid #1e1e24}
 .cta-sub{font-size:14px;color:#6b6b78;line-height:1.8;margin-bottom:36px}
 .cta-actions{display:flex;flex-direction:column;gap:12px}
 .cta-note{font-size:10px;color:#3a3a44;letter-spacing:2px;margin-top:12px}
+
+/* FAQ */
 .faq-section{background:#060608;padding:80px 40px;border-bottom:1px solid #1e1e24}
 .faq-item{max-width:800px;margin:0 auto 30px;padding:24px;background:#111115;border:1px solid #1e1e24}
 .faq-item strong{display:block;color:#e03030;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .faq-item p{color:#6b6b78;font-size:14px;line-height:1.7}
-footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1e1e24;font-size:11px;color:#3a3a44;letter-spacing:2px}
-.footer-logo{width:40px;height:40px;opacity:0.6}
+
+/* FOOTER WITH LOGO + SOCIAL ICONS */
+footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1e1e24;font-size:11px;color:#3a3a44;letter-spacing:2px;flex-wrap:wrap;gap:20px}
+.footer-left{display:flex;align-items:center;gap:16px}
+.footer-logo{width:40px;height:40px;animation:logo-glow 3s infinite}
+.footer-social{display:flex;gap:16px}
+.footer-social a{color:#6b6b78;text-decoration:none;font-size:18px;transition:color 0.2s}
+.footer-social a:hover{color:#e03030}
+footer span{color:#e03030}
+
+/* LOGO GLOW ANIMATION - ALL INSTANCES */
+@keyframes logo-glow{
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(230,0,0,0.4)); opacity: 0.6; }
+  50% { filter: drop-shadow(0 0 20px rgba(230,0,0,0.9)); opacity: 1; }
+}
+
+/* COOKIE BANNER */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#060608;border-top:1px solid #e03030;padding:20px;text-align:center;z-index:999;display:none}
 .cookie-banner p{margin:0 0 15px;color:#6b6b78;font-size:12px}
 .cookie-banner button{background:#e03030;color:#fff;border:none;padding:10px 30px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase}
-@media(max-width:1024px){.hero-cover{position:relative;right:auto;top:auto;transform:none;width:300px;height:420px;margin:40px auto 0;display:block}.hero{flex-direction:column;padding-top:150px}.hero-content{text-align:center}.hero-desc{margin:32px auto;border-left:none;border-bottom:2px solid #e03030;padding-bottom:20px}.cta-inner{grid-template-columns:1fr;gap:40px}}
-@media(max-width:768px){nav{padding:14px 20px}.hero{padding:120px 20px 60px}section{padding:70px 20px}.hero-cover{width:240px;height:340px}.hero-logo img{width:80px;height:80px}footer{flex-direction:column;gap:16px;text-align:center}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-cover{position:relative;right:auto;top:auto;transform:none;width:300px;height:420px;margin:40px auto 0;display:block}
+  .hero{flex-direction:column;padding-top:150px}
+  .hero-desc{margin:32px auto;border-left:none;border-bottom:2px solid #e03030;padding-bottom:20px}
+  .cta-inner{grid-template-columns:1fr;gap:40px}
+  .nav-links{display:none}
+}
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .hero{padding:120px 20px 60px}
+  section{padding:70px 20px}
+  .hero-cover{width:240px;height:340px}
+  footer{flex-direction:column;gap:16px;text-align:center;justify-content:center}
+  .footer-left{flex-direction:column}
+  .footer-logo{margin-bottom:10px}
+}
 </style>
 </head>
 <body>
 
+<!-- NAVIGATION WITH LOGO + ANCHOR LINKS -->
 <nav>
-  <div class="nav-brand">
-    <img src="logo.png" alt="Logo" class="nav-logo">
-    <span>PROTOKÓŁ ZERO // ROB VELD</span>
+  <a href="#autor" class="nav-logo">
+    <img src="logo.png" alt="Logo">
+    <span>PROTOKÓŁ</span> ZERO // ROB VELD
+  </a>
+  <div class="nav-links">
+    <a href="#problem">DIAGNOZA</a>
+    <a href="#system">NARZĘDZIA</a>
+    <a href="#autor">OGARNIJ CHAOS</a>
   </div>
   <div><span class="status-dot"></span>STATUS: OPERACYJNY // V.1.0.25</div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-logo">
-      <img src="logo.png" alt="Protokół Zero Logo">
-    </div>
-    <div class="hero-meta">
-      <span class="tag">AKT I</span>
-      <span class="tag tag-red">ANATOMIA UPADKU</span>
-      <span class="tag">OGARNIJ CHAOS</span>
-    </div>
-    <h1 class="hero-title">PROTOKÓŁ<span class="zero">ZERO</span></h1>
-    <div class="hero-subtitle">40 DNI MGŁY — SYSTEM ODZYSKIWANIA KONTROLI</div>
-    <p class="hero-desc">Nie ma tu motywacyjnego bełkotu. Tylko diagnoza, narzędzia i egzekucja. Dla tych, którzy stoją w miejscu i wiedzą, że coś musi się zmienić — <em>dziś</em>.</p>
-    <div style="text-align:center">
-      <a href="#sample" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
-      <a href="#system" class="btn-primary">↓ WEJDŹ DO PROTOKOŁU</a>
-    </div>
+  <div class="hero-meta">
+    <a href="#problem" class="tag">AKT I</a>
+    <a href="#problem" class="tag tag-red">ANATOMIA UPADKU</a>
+    <a href="#autor" class="tag">OGARNIJ CHAOS</a>
+  </div>
+  <h1 class="hero-title">PROTOKÓŁ<span class="zero">ZERO</span></h1>
+  <div class="hero-subtitle">40 DNI MGŁY — SYSTEM ODZYSKIWANIA KONTROLI</div>
+  <p class="hero-desc">Nie ma tu motywacyjnego bełkotu. Tylko diagnoza, narzędzia i egzekucja. Dla tych, którzy stoją w miejscu i wiedzą, że coś musi się zmienić — <em>dziś</em>.</p>
+  <div>
+    <a href="#sample" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
+    <a href="#system" class="btn-primary">↓ WEJDŹ DO PROTOKOŁU</a>
   </div>
   <div class="hero-cover">
     <div class="cover-glow"></div>
@@ -123,6 +180,7 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
+<!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="container">
     <div class="section-label">DIAGNOZA STARTOWA</div>
@@ -142,6 +200,7 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
+<!-- SYSTEM -->
 <section class="system" id="system">
   <div class="container">
     <div class="section-label">ETAP 2: NARZĘDZIA KRYTYCZNE</div>
@@ -181,6 +240,7 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
+<!-- AUTHOR NOTE -->
 <section class="author-note">
   <div class="container">
     <p>TA KSIĄŻKA POWSTAŁA W CZASIE, GDY SAM JEJ POTRZEBOWAŁEM NAJBARDZIEJ.</p>
@@ -190,7 +250,8 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
-<section class="cta-section" id="sample">
+<!-- CTA / AUTHOR SECTION -->
+<section class="cta-section" id="autor">
   <div class="cta-inner">
     <div>
       <div class="author-label">AUTOR PROTOKOŁU</div>
@@ -202,14 +263,15 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
       <div class="cta-headline">ZACZNIJ DZIAŁAĆ<br>TERAZ</div>
       <div class="cta-sub">Nie czekaj na poniedziałek. Twój Protokół Zero zaczyna się w tej sekundzie.</div>
       <div class="cta-actions">
-        <a href="https://www.naffy.io/Unprinted/ogarnij-chaos-8EV" class="btn-primary">🔥 PEŁNA WERSJA – 47 ZŁ</a>
-        <a href="https://www.naffy.io/Unprinted/darmowy-fragment-protokol-zero-instrukcja-awaryjna-xag" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
+        <a href="https://naffy.pl/checkout/TWOJ_LINK" class="btn-primary">🔥 PEŁNA WERSJA – 47 ZŁ</a>
+        <a href="https://naffy.pl/landing/TWOJ_LINK" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
       </div>
       <div class="cta-note">WERSJA 1.0.25 // OGARNIJ CHAOS</div>
     </div>
   </div>
 </section>
 
+<!-- FAQ -->
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-label">FAQ</div>
@@ -220,14 +282,25 @@ footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
+<!-- FOOTER WITH LOGO + SOCIAL ICONS -->
 <footer>
-  <img src="logo.png" alt="Logo" class="footer-logo">
-  <div>
-    <div><span>PROTOKÓŁ</span> ZERO — ROB VELD</div>
-    <div><span>OGARNIJ CHAOS</span> © 2025 — V.1.0.25</div>
+  <div class="footer-left">
+    <img src="logo.png" alt="Logo" class="footer-logo">
+    <div>
+      <div><span>PROTOKÓŁ</span> ZERO — ROB VELD</div>
+      <div><span>OGARNIJ CHAOS</span> © 2025 — V.1.0.25</div>
+    </div>
+  </div>
+  <div class="footer-social">
+    <!-- ZMIEŃ LINKI NA SWOJE -->
+    <a href="https://github.com/TWOJ_GITHUB" target="_blank" title="GitHub">GitHub</a>
+    <a href="https://linkedin.com/in/TWOJ_LINKEDIN" target="_blank" title="LinkedIn">LinkedIn</a>
+    <a href="https://instagram.com/TWOJ_INSTAGRAM" target="_blank" title="Instagram">Instagram</a>
+    <a href="mailto:kontakt@ogarnijchaos.pl" title="Email">Email</a>
   </div>
 </footer>
 
+<!-- COOKIE BANNER -->
 <div id="cookie-banner" class="cookie-banner">
   <p>Ta strona używa cookies wyłącznie do obsługi płatności (Naffy). Nie śledzimy Cię.</p>
   <button onclick="acceptCookies()">ROZUMIEM</button>
